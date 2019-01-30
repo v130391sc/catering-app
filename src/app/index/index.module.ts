@@ -19,12 +19,13 @@ import { UserModule } from '../layouts/users/users.module';
 import { ContactComponent } from './contact/contact.component';
 import {AgmCoreModule } from '@agm/core';
 import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import { BreakfastComponent } from './breakfast/breakfast.component';
 
 @NgModule({
 imports: [ CommonModule, FormsModule, ReactiveFormsModule, GooglePlaceModule, AgmCoreModule.forRoot({
     apiKey:'AIzaSyCCY-lyQyJtIMqfIYr3RkSlGV-FhMXj4iU'
    }), RouterModule.forChild(IndexRoutes) ],
-declarations: [ IndexComponent, NavbarComponent, FooterComponent, LoginComponent, RegisterComponent, ContactComponent ],
+declarations: [ IndexComponent, NavbarComponent, FooterComponent, LoginComponent, RegisterComponent, ContactComponent, BreakfastComponent ],
 schemas: [ NO_ERRORS_SCHEMA ],
 exports: [ NavbarComponent, FooterComponent,FormsModule, ReactiveFormsModule ],
 providers: []
