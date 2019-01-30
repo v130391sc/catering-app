@@ -1,5 +1,7 @@
 # CateringApp
 
+Aplicación implementada con Angular para la gestión de una empresa de Catering.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
 ## Build
