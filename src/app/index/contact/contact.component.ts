@@ -89,9 +89,12 @@ export class ContactComponent implements OnInit {
           this.textoNotificacion = "Se ha producido un error";
           console.error(error)
         });
+    if(this.textoNotificacion==""){
+      this.textoNotificacion = `Su mensaje se ha enviado con éxito`
+    }
     this.mostrarNotificacion = true;
     setTimeout(function(){
-
+      
       this.mostrarNotificacion = false;
 
     }.bind(this),1500);
