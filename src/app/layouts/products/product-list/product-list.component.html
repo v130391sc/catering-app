@@ -1,0 +1,58 @@
+<div style="min-height: 300px;" class="container mt-3 animated fadeIn fast">
+    <div *ngIf="productList.length !== 0 && !loading">
+        <small class="text-muted ml-2">*Este ingrediente puede contener alérgenos</small>
+    </div>
+    <p class="my-3">
+        <a (click)="mostrarBuscadorAvanzado()" class="busqueda"><strong>Búqueda avanzada</strong></a>
+    </p>
+    <div class="animated fadeIn fast border bg-light border-top-0 border-secondary rounded-bottom p-3" *ngIf="mostrarMenu">
+        <form class="form-inline">
+            <div class="input-group w-100">
+                <input (keyup.enter)="getAllProducts(buscarTexto.value, buscarPMin.value, buscarPMax.value)" type="text" aria-label="Nombre producto" class="form-control w-50" placeholder="Nombre producto" #buscarTexto>
+                <input (keyup.enter)="getAllProducts(buscarTexto.value, buscarPMin.value, buscarPMax.value)" type="number" aria-label="Precio Min" class="form-control" placeholder="Precio Min (€)" #buscarPMin>
+                <input (keyup.enter)="getAllProducts(buscarTexto.value, buscarPMin.value, buscarPMax.value)" type="number" aria-label="Precio Max" class="form-control" placeholder="Precio Max (€)" #buscarPMax>
+                <div class="input-group-append">
+                    <button (click)="getAllProducts(buscarTexto.value, buscarPMin.value, buscarPMax.value)" class="btn btn-dark" type="button">
+                              <i class="fas fa-search"></i>
+                          </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-columns mt-3  animated fadeIn">
+        <div class="card animated mx-auto fadeIn fast border-danger mb-3" *ngFor="let product of productList">
+            <img class="card-img-top img-fluid border-bottom border-danger" [src]="product.nombreImg | sinfoto" [alt]="product.nombre">
+            <div class="card-body text-danger">
+                <h5 class="card-title">{{ product.nombre }}</h5>
+
+                <p class="card-text mb-1">Ingredientes</p>
+                <span *ngFor="let ingrediente of product.listaIngredientes" class="badge badge-light mb-3 mr-1">{{ ingrediente.nombre }}<span class="text-danger" *ngIf="ingrediente.alergenos === 'si'">*</span></span>
+                <form method="post" action="">
+                    <div class="contadorTam mx-auto input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <button (click)="decrement(product)" class="btn btn-outline-info" type="button"><i class="fas fa-minus"></i></button>
+                        </div>
+                        <input type="text" class="contador text-center" value="{{product.contador}}">
+                        <div class="input-group-append">
+                            <button (click)="increment(product)" class="btn btn-outline-info" type="button"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <p class="text-center"><strong>{{product.costeUnidad}} €</strong></p>
+                    <button (click)="anadirProducto(product)" type="button" class="d-flex mx-auto btn btn-danger btn-sm">Añadir a la cesta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="productList.length === 0 && !loading" class="animated fadeIn fast alert alert-danger" role="alert">
+        No existen productos que mostrar con el nombre <strong>{{this.termino}}</strong>
+    </div>
+    <div *ngIf="loading" class="animated fadeIn fast alert alert-info" role="alert">
+        <strong>Cargando...</strong> por favor espere
+    </div>
+    <div *ngIf="mostrarNotificacion" class="notificacion animated fadeIn fast alert alert-success" role="alert">
+        <strong>{{ this.productName }}</strong> ha sido añadido a la cesta
+    </div>
+    <div *ngIf="mostrarNotificacion" class="fondoNotificacion">
+    </div>
+</div>

@@ -1,0 +1,121 @@
+<!--Modal: Register Form-->
+<div class="modal fade p-0" id="createUserForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" #myModal>
+    <div class="modal-dialog cascading-modal" role="document">
+        <form [formGroup]="forma" (ngSubmit)="addUser()">
+            <div class="modal-content">
+
+                <div class="modal-header light-blue darken-3 white-text">
+                    <h4 class="title">
+                        <i class="fa fa-user-plus"></i> Registrarse</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+                </div>
+                <small class="text-muted mt-2 ml-2">*Valores obligatorios</small>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="">Nombre de Usuario*</label>
+                        <div class="">
+
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['username'].valid, 'is-valid': forma.controls['username'].valid }" type="text" placeholder="Usuario" formControlName="username" #nombreUsuario>
+                            <div *ngIf="forma.controls['username'].errors?.existe" class="form-control-feedback">
+                                El usuario '{{nombreUsuario.value}}' ya existe
+                            </div>
+                            <div *ngIf="forma.controls['username'].pending" class="form-control-feedback">
+                                Verificando el usuario...
+                            </div>
+                            <div *ngIf="forma.controls['username'].errors?.minlength" class="form-control-feedback">
+                                Por lo menos 5 caracteres.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Nombre y Apellidos*</label>
+                        <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['nombre'].valid, 'is-valid': forma.controls['nombre'].valid }" type="text" placeholder="Nombre" formControlName="nombre">
+                        <div *ngIf="forma.controls['nombre'].errors?.minlength" class="form-control-feedback">
+                            Por lo menos 3 caracteres.
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Correo*</label>
+                        <div class="">
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['correo'].valid, 'is-valid': forma.controls['correo'].valid }" type="email" placeholder="Correo electrónico" formControlName="correo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Contraseña*</label>
+                        <div class="">
+
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['password1'].valid, 'is-valid': forma.controls['password1'].valid }" type="password" placeholder="Password" formControlName="password1">
+                            <div *ngIf="forma.controls['password1'].errors?.minlength" class="form-control-feedback">
+                                Por lo menos 4 caracteres.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="">Repetir Contraseña*</label>
+                        <div class="">
+
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['password2'].valid, 'is-valid': forma.controls['password2'].valid }" type="password" placeholder="Repetir contraseña" formControlName="password2">
+                            <div *ngIf="forma.controls['password2'].errors?.noiguales" class="form-control-feedback">
+                                Las contraseñas no coinciden
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label class="">Fecha de nacimiento*</label>
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['fechaN'].valid, 'is-valid': forma.controls['fechaN'].valid }" type="date" placeholder="Fecha nacimiento" formControlName="fechaN">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="">Razón Social</label>
+                            <input class="form-control" type="text" placeholder="Razón social" formControlName="razonS">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-7 mb-3">
+                            <label class="">CIF*</label>
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !forma.controls['cif'].valid, 'is-valid': forma.controls['cif'].valid }" type="text" placeholder="Código de Identificación Fiscal" formControlName="cif">
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label class="">Teléfono</label>
+                            <input class="form-control" type="text" placeholder="Teléfono" formControlName="tlf">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Alérgenos</label>
+                        <div class="">
+                            <textarea class="form-control" placeholder="Alérgenos" rows="2" formControlName="alergenos"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Necesidades alimentación</label>
+                        <div class="">
+                            <textarea class="form-control" placeholder="Necesidades alimentarias" rows="2" formControlName="necAlim"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" [ngClass]="{ 'is-invalid': !forma.controls['check'].valid, 'is-valid': forma.controls['check'].valid }" type="checkbox" value="" formControlName="check" required>
+                            <label class="form-check-label" for="invalidCheck">
+                                    Acepto los términos y condiciones
+                                  </label>
+                            <div class="invalid-feedback" *ngIf="forma.controls['check'].errors?.required">
+                                Debes aceptar antes de registrarte
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2">
+                        <button class="buttonReg" (click)="cerrarModal(myModal)" type="submit" [disabled]="!forma.valid" class="btn btn-info waves-light" mdbRippleRadius>Registrarse
+                                <i class="fa fa-sign-in ml-1"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div *ngIf="mostrarNotificacion" class="notificacion animated fadeIn fast alert" [ngClass]="{' alert-success': !hayError, 'alert-danger': hayError}" role="alert">
+    <strong>{{this.textoNotificacion}}</strong>
+</div>

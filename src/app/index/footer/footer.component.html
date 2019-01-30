@@ -1,0 +1,36 @@
+<footer class="container pt-4 my-5 pt-lg-5 border-top">
+    <div class="row">
+        <div class="col-4 col-lg" style="position: static">
+            <img class="tamanioImgFot" src="./assets/img/logo.png" alt="">
+            <small class="d-block mb-3 text-muted">&copy; Cosas de Katy</small>
+        </div>
+        <div class="col-4 col-lg" style="position: static">
+            <h6>Nuestros servicios</h6>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">Catering</a>
+                    <ul class="footer-list">
+                        <li><a class="text-muted" [routerLink]="[ '/products/all-products' ]">Productos</a></li>
+                        <li><a class="text-muted" href="#">Menús</a></li>
+                        <li><a class="text-muted" href="#">Solicitar presupuesto</a></li>
+                    </ul>
+                </li>
+                <li><a class="text-muted" href="#">Repostería creativa</a></li>
+                <li><a class="text-muted" href="#">Desayunos a domicilio</a></li>
+            </ul>
+        </div>
+        <div class="col-4 col-lg" style="position: static">
+            <h6>Cosas de Katy</h6>
+            <ul class="list-unstyled text-small">
+                <li><a class="text-muted" href="#">Sobre Nosotros</a></li>
+                <li><a class="text-muted" [routerLink]="[ '/contact' ]">Contacto</a></li>
+                <li>
+                    <strong>
+								<span class="text-muted">Horario</span>
+							</strong>
+                </li>
+                <small class="text-muted">Lunes a sábado: 8:00 a 21:00</small>
+            </ul>
+        </div>
+
+    </div>
+</footer>

@@ -1,0 +1,19 @@
+<div style="min-height: 300px;" class="container animated fadeIn fast mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="nav flex-column nav-pills border border-dark rounded" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <!-- Usuario -->
+                <a class="nav-link menuUser text-dark bg-light rounded-top" *ngIf="!this.esAdmin()" data-toggle="pill" [routerLink]="['/user/account']" routerLinkActive="active" role="tab" aria-controls="v-pills-home" aria-selected="true"><strong>Cuenta</strong></a>
+                <a class="nav-link menuUser text-dark border-top border-bottom border-dark bg-light rounded-0" *ngIf="!this.esAdmin()" data-toggle="pill" [routerLink]="['/user/profile']" routerLinkActive="active" role="tab" aria-controls="v-pills-profile" aria-selected="false"><strong>Perfil</strong></a>
+                <a class="nav-link menuUser text-dark bg-light rounded-bottom" *ngIf="!this.esAdmin()" data-toggle="pill" [routerLink]="['/user/my-orders']" routerLinkActive="active" role="tab" aria-controls="v-pills-messages" aria-selected="false"><strong>Mis pedidos</strong> </a>
+                <!-- Admin -->
+                <a class="nav-link menuUser text-dark bg-light rounded-top" *ngIf="this.esAdmin()" data-toggle="pill" [routerLink]="['/user/clients']" routerLinkActive="active" role="tab" aria-controls="v-pills-home" aria-selected="true"><strong>Clientes</strong></a>
+                <a class="nav-link menuUser text-dark border-top border-bottom border-dark bg-light rounded-0" *ngIf="this.esAdmin()" data-toggle="pill" [routerLink]="['/user/product-management']" routerLinkActive="active" role="tab" aria-controls="v-pills-profile" aria-selected="false"><strong>Gestión de Productos</strong></a>
+                <a class="nav-link menuUser text-dark bg-light rounded-bottom" *ngIf="this.esAdmin()" data-toggle="pill" [routerLink]="['/user/all-orders']" routerLinkActive="active" role="tab" aria-controls="v-pills-messages" aria-selected="false"><strong>Gestión de Pedidos</strong></a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

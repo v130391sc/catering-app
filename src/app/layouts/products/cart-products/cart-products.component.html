@@ -1,0 +1,58 @@
+<div style="min-height: 300px;" class="container animated fadeIn fast" *ngIf="cartProducts.length > 0">
+    <div class="row mt-5">
+        <!-- List of Products -->
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-12">
+                    <table class="table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col-6">Producto</th>
+                                <th scope="col-3">Precio</th>
+                                <th scope="col-3">Cantidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let product of cartProducts">
+                                <th scope="row">
+                                    <a [routerLink]="['/product', product.nombre ]">
+                                        <div>
+                                            <img [src]="product.nombreImg" class="img-thumbnail float-left mr-4" width="125px" height="125px" alt="">
+                                        </div>
+                                    </a>
+                                    <div class="mt-3">
+                                        <h5 class="mb-3">
+                                            <strong>
+                                                <a [routerLink]="['/product', product.nombre]">{{ product.nombre }}</a>
+                                            </strong>
+                                        </h5>
+                                        <a placement="top" mdbTooltip="Remove Product" container="body" (click)="removeCartProduct(product)">
+                                            <small class="eliminarCesta">Eliminar</small>
+                                        </a>
+                                    </div>
+                                </th>
+                                <td>
+                                    <div class="mt-4">
+                                        <span class="text-danger">
+                                      <strong>{{ product.costeUnidad | currency:'EUR' }}</strong> 
+                                    </span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input class="cantForm form-control form-control-sm mt-4" (change)="product.contador = cantidad.value" type="number" placeholder="cant." value="{{product.contador}}" min="1" #cantidad>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-4">
+            <app-cart-calculator [products]="cartProducts"></app-cart-calculator>
+        </div>
+    </div>
+</div>
+<div style="min-height: 300px;" class="container" *ngIf="cartProducts.length === 0">
+    <app-no-products-found [title]="messageTitle" [description]="messageDescription"></app-no-products-found>
+</div>

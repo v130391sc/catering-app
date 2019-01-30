@@ -1,0 +1,23 @@
+<h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-muted">Tu carrito</span>
+    <span class="badge badge-primary badge-pill">{{products.length}}</span>
+</h4>
+<ul class="list-group mb-3">
+    <li class="list-group-item d-flex justify-content-between lh-condensed" *ngFor="let product of products">
+        <div>
+            <h6 class="my-0">{{product.nombre}}</h6>
+        </div>
+        <span class="badge badge-secondary badge-pill">x{{product.contador}}</span>
+        <span class="text-muted">{{product.costeUnidad | currency:'EUR'}}</span>
+    </li>
+    <hr>
+    <li class="list-group-item d-flex justify-content-between">
+        <span>Total</span>
+        <strong>{{totalValue | currency:'EUR'}}</strong>
+    </li>
+    <a class="btn btn-primary" [routerLink]="['/products/all-products']">Continuar comprando</a>
+    <a class="btn btn-light" (click)="crearPedido()" data-toggle="modal" data-target="#createOrderForm">Hacer pedido</a>
+
+</ul>
+
+<app-checkout [order]="this.order"></app-checkout>

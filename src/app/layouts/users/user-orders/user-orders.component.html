@@ -1,0 +1,43 @@
+<div class="card mt-3 animated fadeIn fast" *ngFor="let order of orderList">
+    <div class="card-header">
+        <div class="d-inline">
+            <i class="far fa-arrow-alt-circle-right"></i>
+            <p class="d-inline ml-2" [ngClass]="{'text-success': order.fechaEntrega != null, 'text-danger': order.fechaEntrega == null}">{{order.fechaEntrega != null ? "ENTREGADO" : "PENDIENTE ENTREGA"}} ({{order.tServicio}})</p>
+        </div>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item align-items-center">
+                Productos
+                <span class="badge badge-light float-right" *ngFor="let productos of order.listaProductosPedido">{{productos.producto.nombre}}(x{{productos.cantidad}})</span>
+            </li>
+            <li *ngIf="order.direccion!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Dirección entrega
+                <span class="badge badge-light">{{order.direccion}}, {{order.ciudad}}, {{order.provincia}}, {{order.codigoPostal}}</span>
+            </li>
+            <li *ngIf="order.requisitos!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Requisitos
+                <span class="badge badge-light">{{order.requisitos}}</span>
+            </li>
+            <li *ngIf="order.comentarios!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Comentarios
+                <span class="badge badge-light">{{order.comentarios}}</span>
+            </li>
+        </ul>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="mt-3">
+                <span style="font-size: 1.3rem;">Total: </span>
+                <strong style="font-size: 1.3rem;" class="text-danger">{{order.precio | currency:'EUR'}}</strong>
+            </div>
+            <button (click)="descargarFactura(order)" *ngIf="order.fechaEntrega != null" type="button" class="btn btn-danger mt-3">
+                    <i class="fas fa-download mr-2"></i>Factura
+                </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="orderList.length === 0 && !loading" class="animated fadeIn fast alert alert-danger" role="alert">
+    No existen pedidos que mostrar
+</div>
+<div *ngIf="loading" class="animated fadeIn fast alert alert-info" role="alert">
+    <strong>Cargando...</strong> por favor espere
+</div>

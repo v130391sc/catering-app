@@ -1,0 +1,56 @@
+<div class="card mt-3 animated fadeIn fast" *ngFor="let order of orderList; let i=index">
+    <div class="card-header">
+        <i class="far fa-clock"></i>
+        <div class="d-inline ml-2">{{order.fechaPedido | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
+        <div class="float-right text-danger">{{order.tServicio}}</div>
+    </div>
+    <div class="card-body">
+        <ul class="list-group">
+            <li class="list-group-item align-items-center">
+                Productos
+                <span class="badge badge-light float-right" *ngFor="let productos of order.listaProductosPedido">{{productos.producto.nombre}} (x{{productos.cantidad}})</span>
+            </li>
+            <li *ngIf="order.direccion != null" class="list-group-item d-flex justify-content-between align-items-center">
+                Dirección entrega
+                <span class="badge badge-light">{{order.direccion}}, {{order.ciudad}}, {{order.provincia}}, {{order.codigoPostal}}</span>
+            </li>
+            <li *ngIf="order.tEvento!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Tipo del Evento
+                <span class="badge badge-light">{{order.tEvento}}</span>
+            </li>
+            <li *ngIf="order.numComensales!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Número de comensales
+                <span class="badge badge-light">{{order.numComensales}}</span>
+            </li>
+            <li *ngIf="order.requisitos!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Requisitos especiales
+                <span class="badge badge-light">{{order.requisitos}}</span>
+            </li>
+            <li *ngIf="order.comentarios!=null" class="list-group-item d-flex justify-content-between align-items-center">
+                Comentarios
+                <span class="badge badge-light">{{order.comentarios}}</span>
+            </li>
+        </ul>
+        <div class="d-flex justify-content-between align-items-center">
+            <button (click)="entregarPedido(order)" type="button" class="btn btn-success mt-3">
+                Entregar
+            </button>
+            <div class="mt-3">
+                <span style="font-size: 1.3rem;">Total: </span>
+                <strong style="font-size: 1.3rem;" class="text-danger">{{order.precio | currency:'EUR'}}</strong>
+            </div>
+            <button (click)="borrarPedido(order, i)" type="button" class="btn btn-outline-danger mt-3">
+                Eliminar
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="orderList.length === 0 && !loading" class="animated fadeIn fast alert alert-danger" role="alert">
+    No existen pedidos que mostrar
+</div>
+<div *ngIf="loading" class="animated fadeIn fast alert alert-info" role="alert">
+    <strong>Cargando...</strong> por favor espere
+</div>
+<div *ngIf="mostrarNotificacion" class="notificacion animated fadeIn fast alert" [ngClass]="{' alert-success': !hayError, 'alert-danger': hayError}" role="alert">
+    <strong>{{this.textoNotificacion}}</strong>
+</div>

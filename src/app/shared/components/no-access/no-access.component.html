@@ -1,0 +1,21 @@
+<div class="container mt-5 animated fadeIn fast">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>
+                    Uups!</h1>
+                <h2>
+                    403 Acceso denegado</h2>
+                <div class="error-details mb-2">
+                    Haga Login como Administrador
+                </div>
+                <div class="error-actions">
+                    <a [routerLink]="[ '/' ]" class="btn btn-primary btn-lg">
+                        <span class="glyphicon glyphicon-home"></span> Home </a>
+                    <a [routerLink]="[ '/login' ]" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-envelope"></span>Login </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="container mt-3 animated fadeIn fast">
+    <div class="row">
+        <div class="col-lg-8">
+            <form class="mt-3 animated fadeIn fast" [formGroup]="formulario" (ngSubmit)="editUser()">
+                <h4 class="title mb-4">
+                    <i class="fas fa-envelope"></i>
+                    <div class="d-inline ml-2">Contacto</div>
+                </h4>
+                <p>¡Envia un mensaje a <strong>Cosas de Katy</strong>! Estamos a tu disposición para cualquier duda que tengas.</p>
+                <div class="form-row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['nombre'].valid, 'is-valid': formulario.controls['nombre'].valid }" type="text" placeholder="Nombre" formControlName="nombre">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['correo'].valid, 'is-valid': formulario.controls['correo'].valid }" type="email" placeholder="Correo electrónico" formControlName="correo">
+                    </div>
+                </div>
+                <div class="form-row mt-3">
+                    <div class="col-md-6 mb-3">
+                        <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['telefono'].valid, 'is-valid': formulario.controls['telefono'].valid }" type="text" placeholder="Teléfono" formControlName="telefono">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input class="form-control" type="text" placeholder="Compañia" formControlName="compania">
+                    </div>
+                </div>
+                <input class="form-control mt-3 mb-3" [ngClass]="{ 'is-invalid': !formulario.controls['asunto'].valid, 'is-valid': formulario.controls['asunto'].valid }" type="text" placeholder="Asunto" formControlName="asunto">
+                <div class="form-group">
+                    <textarea class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['mensaje'].valid, 'is-valid': formulario.controls['mensaje'].valid }" placeholder="Mensaje..." rows="5" formControlName="mensaje"></textarea>
+                </div>
+                <div class="mt-2">
+                    <button class="buttonReg" type="submit" [disabled]="!formulario.valid" class="btn btn-info waves-light" mdbRippleRadius>Enviar
+                <i class="fa fa-sign-in ml-1"></i>
+          </button>
+                </div>
+            </form>
+            <div *ngIf="mostrarNotificacion" class="notificacion animated fadeIn fast alert" [ngClass]="{' alert-success': !hayError, 'alert-danger': hayError}" role="alert">
+                <strong>{{this.textoNotificacion}}</strong>
+            </div>
+        </div>
+        <div class="col-lg-4 border-left mt-3">
+
+
+            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+
+                <agm-marker *ngFor="let m of markers; let i = index" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label">
+
+                    <agm-info-window>
+                        <strong>Universidad Politénica de Madrid</strong>
+                    </agm-info-window>
+
+                </agm-marker>
+
+            </agm-map>
+            <p class="mt-3">Horario:<small class="text-muted"> 9:00 a 20:00</small></p>
+            <p>Teléfono:<small class="text-muted"> 916618756</small></p>
+            <p>Dirección:<small class="text-muted"> Calle de los Ciruelos, 28660 Boadilla del Monte, Madrid</small></p>
+        </div>
+    </div>
+
+</div>

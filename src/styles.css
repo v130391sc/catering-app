@@ -1,0 +1,268 @@
+html {
+    font-size: 1rem;
+}
+
+body {
+    padding-bottom: 50px;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.main-container {
+    margin-top: 20px;
+}
+
+.img-logo {
+    width: 120px;
+}
+
+.fondoRegistro {
+    background-color: #000;
+    opacity: .5;
+    transition: opacity .15s linear;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+
+/* Animaciones */
+
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+}
+
+button,
+input,
+select,
+textarea,
+a:focus {
+    box-shadow: none !important;
+}
+
+.ingForm {
+    top: 200px;
+}
+
+.login {
+    right: 17px;
+    position: absolute;
+    top: 15px;
+}
+
+#dropdownId>.cambiarHover>a:hover {
+    background-color: #d9534f !important;
+}
+
+#dropdownId>.cambiarHover>a:active {
+    background-color: #dc3545 !important;
+}
+
+#dropdownId>.cambiarHoverAux {
+    text-align: center;
+}
+
+#dropdownId>.cambiarHoverAux>a:hover {
+    background-color: grey !important;
+}
+
+#dropdownId>.cambiarHoverAux>a:active {
+    background-color: #343a40 !important;
+}
+
+.cambiarHoverBut:hover {
+    background-color: #E6B0AA !important;
+}
+
+.fondo {
+    /* background-image: url("background.jpg");*/
+    background: rgba(255, 255, 255, 1);
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 245, 1) 45%, rgba(250, 245, 245, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(45%, rgba(250, 245, 245, 1)), color-stop(90%, rgba(250, 245, 245, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+    background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 245, 1) 45%, rgba(250, 245, 245, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background: -o-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 245, 1) 45%, rgba(250, 245, 245, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 245, 1) 45%, rgba(250, 245, 245, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(250, 245, 245, 1) 45%, rgba(250, 245, 245, 1) 90%, rgba(255, 255, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff', GradientType=0);
+    /* background-repeat:no-repeat;
+ background-size:contain;
+ background-position:center;*/
+}
+
+.footer-list li {
+    list-style-type: none;
+    font-size: 0.9rem;
+}
+
+ol.carousel-indicators {
+    position: absolute;
+    bottom: 5px;
+    margin: 0;
+    left: 0;
+    right: 0;
+    width: auto;
+}
+
+ol.carousel-indicators li,
+ol.carousel-indicators li.active {
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50%;
+    border: 1px solid #dc3545;
+    background: transparent;
+}
+
+ol.carousel-indicators li {
+    background: rgba(255, 255, 255, 0.39);
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+ol.carousel-indicators li:hover {
+    background: #E6B0AA;
+}
+
+ol.carousel-indicators li.active {
+    background: #dc3545;
+}
+
+.contadorTam {
+    display: flex;
+    width: 108px;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+
+.contador {
+    width: 49px !important;
+    border: solid 1px #17a2b8;
+}
+
+.contador:active {
+    border-color: none;
+}
+
+.contador:focus {
+    outline: 0;
+    border-color: none;
+}
+
+.busqueda {
+    cursor: er;
+    color: #6c757d !important;
+}
+
+.busqueda:hover {
+    color: #dc3545 !important;
+}
+
+.tamanioImgNav {
+    width: 200px;
+    height: 200px;
+}
+
+.tamanioImgFot {
+    width: 150px;
+    height: 150px;
+}
+
+.notificacion {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 1001;
+    transform: translate(-50%, -50%);
+}
+
+.fondoNotificacion {
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 0, 0, 0.473);
+    z-index: 1000;
+    -moz-opacity: 0.1;
+    opacity: .10;
+    filter: alpha(opacity=80);
+}
+
+.eliminarCesta {
+    cursor: pointer;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+.cantForm {
+    width: 56px;
+}
+
+.accountCard:hover {
+    background-color: #a8c4c9;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    html {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    html {
+        font-size: 0.9rem;
+    }
+    .tamanioImgNav {
+        width: 175px;
+        height: 175px;
+    }
+    .tamanioImgFot {
+        width: 125px;
+        height: 125px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 0.8rem;
+    }
+    .tamanioImgNav {
+        width: 150px;
+        height: 150px;
+    }
+    .tamanioImgFot {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+agm-map {
+    height: 300px;
+}

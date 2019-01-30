@@ -1,0 +1,19 @@
+<div class="row mt-5 animated fadeIn fast">
+    <div class="col-md-12">
+        <div class="error-template">
+            <h1>
+                Uups!</h1>
+            <h2>
+                {{title}}</h2>
+            <div class="error-details mb-2">
+                {{description}}
+            </div>
+            <div class="error-actions">
+                <a [routerLink]="[ '/' ]" class="btn btn-primary btn-lg">
+                    <span class="glyphicon glyphicon-home"></span> Home </a>
+                <a [routerLink]="[ '/products/all-products' ]" class="btn btn-default btn-lg">
+                    <span class="glyphicon glyphicon-envelope"></span>Nuestros productos </a>
+            </div>
+        </div>
+    </div>
+</div>

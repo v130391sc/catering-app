@@ -1,0 +1,89 @@
+<div class="w-100 shadow-sm mb-1">
+
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light p-3 bg-white rounded">
+            <div class="btn-group login mr-lg-2">
+                <button *ngIf="this.esAdmin()" [routerLink]="this.userAdmin() ? ['/user/all-orders'] : ['/user/account']" type="button" class="btn btn-primary">
+                    {{this.user}}
+                </button>
+                <button *ngIf="this.esAdmin()" type="button" (click)="logout()" class="btn btn-primary">
+                        <i class="fas fa-sign-out-alt"></i>
+                </button>
+                <div *ngIf="!this.esAdmin()" class="btn-group dropleft" role="group">
+                    <button type="button" class="btn btn-primary dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<i class="fas fa-user"></i>
+						</button>
+                    <div class="dropdown-menu">
+                        <form class="px-4 py-3" #lForm="ngForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+                            <div class="form-group">
+                                <label for="exampleDropdownFormEmail1">Usuario</label>
+                                <input class="form-control" [ngClass]="{'is-invalid': submitted && this.error == 2}" mdInput type="text" formControlName="usuario" placeholder="Username">
+                                <div *ngIf="submitted && loginForm.controls['usuario'].hasError('required')" class="form-control-feedback">
+                                    Campo requerido
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleDropdownFormPassword1">Contraseña</label>
+                                <input type="password" class="form-control" [ngClass]="{'is-invalid': submitted && this.error == 2}" mdInput formControlName="password" placeholder="Password">
+                            </div>
+                            <div *ngIf="submitted && this.error == 2" class="form-control-feedback text-danger">
+                                {{this.mensajeError}}
+                            </div>
+                            <div *ngIf="submitted && loginForm.controls['password'].hasError('required')" class="form-control-feedback">
+                                Campo requerido
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#createUserForm">¿Eres nuevo? Regístrate!</a>
+                    </div>
+                    <button [routerLink]="['login']" type="button" class="btn btn-primary">
+                            Login
+                          </button>
+                </div>
+                <button [routerLink]="['products/cart-items']" type="button" class="btn btn-warning">
+						<i class="fas fa-shopping-cart">
+                            <span class="mt-2 ml-2 badge badge-light"> {{this.contadorProductos}}</span> 
+                        </i>
+                    </button>
+            </div>
+            <a class="navbar-brand ml-lg-2" [routerLink]="['/']">
+                <img class="tamanioImgNav" src="./assets/img/logo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+            <div class="collapse navbar-collapse d-lg-flex align-items-end flex-lg-column bd-highlight" id="navbarSupportedContent">
+
+                <form class="my-2 mb-lg-0 mr-lg-2 mt-lg-4">
+                    <div class="input-group">
+                        <input (keyup)="buscarProducto(buscarTexto.value)" id="searchForm" class="form-control border-secondary" type="text" placeholder="Buscar productos" #buscarTexto>
+                        <div class="input-group-append">
+                            <button (click)="buscarProducto(buscarTexto.value)" class="btn btn-dark" type="button">
+								<i class="fas fa-search"></i>
+							</button>
+
+                        </div>
+                    </div>
+                </form>
+                <div class="btn-group navbar-nav mr-lg-2 mt-3" role="group" aria-label="Basic example">
+                    <div id="dropdownId" class="btn-group dropdown" role="group">
+                        <button type="button" class="btn btn-danger sinBorde dropdown-toggle" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catering</button>
+                        <div class="dropdown-menu cambiarHover" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" [routerLink]="[ '/products/all-products' ]">Productos</a>
+                            <a class="dropdown-item" href="#">Menús</a>
+                            <a class="dropdown-item" href="#">Solicitar presupuesto</a>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-danger sinBorde" routerLinkActive="active">Repostería Creativa</button>
+                    <button type="button" class="btn btn-danger sinBorde" routerLinkActive="active">Desayunos a domicilio</button>
+                    <button type="button" class="btn btn-danger sinBorde" routerLinkActive="active" [routerLink]="['contact']">Contacto</button>
+                </div>
+
+            </div>
+        </nav>
+    </div>
+</div>
+
+<app-register></app-register>

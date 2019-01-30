@@ -1,0 +1,79 @@
+<!--Modal: Product Form-->
+<div class="modal fade p-0" id="createOrderForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" #myModal>
+    <div class="modal-dialog cascading-modal" role="document">
+        <form [formGroup]="formulario" (ngSubmit)="createOrder()">
+            <div class="modal-content">
+                <div class="modal-header light-blue darken-3 white-text">
+                    <h4 class="title">
+                        <i class="fas fa-shopping-cart"></i> Realizar pedido</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+                </div>
+                <small class="text-muted mt-2 ml-2">*Valores obligatorios</small>
+                <div class="modal-body">
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label class="">Tipo de servicio*</label>
+                            <select class="custom-select" [ngClass]="{ 'is-invalid': !formulario.controls['tServicio'].valid, 'is-valid': formulario.controls['tServicio'].valid }" formControlName="tServicio">
+                              <option value="">Tipo Servicio</option>
+                              <option value="R">Recogida en tienda</option>
+                              <option value="E">Sólo entrega</option>
+                              <option value="EC">Entrega con Mont./Desm.</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="">Tipo evento</label>
+                            <input class="form-control" type="text" placeholder="Tipo de evento" formControlName="tEvento">
+                        </div>
+                    </div>
+                    <div class="form-group fadeIn animated fast" *ngIf="this.tipoServicio == 'E' || this.tipoServicio =='EC'">
+                        <label class="">Dirección*</label>
+                        <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['direccion'].valid, 'is-valid': formulario.controls['direccion'].valid }" type="text" placeholder="Dirección entrega" formControlName="direccion">
+                    </div>
+                    <div class="form-row fadeIn animated fast" *ngIf="this.tipoServicio == 'E' || this.tipoServicio =='EC'">
+                        <div class="col-md-5 mb-3">
+                            <label class="">Código Postal*</label>
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['codPostal'].valid, 'is-valid': formulario.controls['codPostal'].valid }" type="text" placeholder="Código Postal" formControlName="codPostal">
+                        </div>
+                        <div class="col-md-7 mb-3">
+                            <label class="">Ciudad*</label>
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['ciudad'].valid, 'is-valid': formulario.controls['ciudad'].valid }" type="text" placeholder="Ciudad" formControlName="ciudad">
+                        </div>
+                    </div>
+                    <div class="form-row fadeIn animated fast" *ngIf="this.tipoServicio == 'E' || this.tipoServicio =='EC'">
+                        <div class="col-md-7 mb-3">
+                            <label class="">Provincia*</label>
+                            <input class="form-control" [ngClass]="{ 'is-invalid': !formulario.controls['provincia'].valid, 'is-valid': formulario.controls['provincia'].valid }" type="text" placeholder="Provincia" formControlName="provincia">
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label class="">Número de comensales</label>
+                            <input class="form-control" type="number" placeholder="Nºcomensales" min="1" formControlName="nComensales">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Requisitos especiales</label>
+                        <textarea class="form-control" placeholder="Requisitos del cliente" rows="2" formControlName="requisitos"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="">Comentarios</label>
+                        <textarea class="form-control" placeholder="Comentarios" rows="2" formControlName="comentarios"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <span style="font-size: 1.5rem;">Total: </span>
+                        <strong style="font-size: 1.5rem;" class="text-danger">{{this.order.pedidoCliente.precio | currency:'EUR'}}</strong>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button class="buttonReg" (click)="cerrarModal(myModal)" type="submit" [disabled]="!formulario.valid" class="btn btn-info waves-light" mdbRippleRadius>Hacer pedido
+                                <i class="fa fa-sign-in ml-1"></i>
+                            </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="mostrarNotificacion" class="notificacion animated fadeIn fast alert" [ngClass]="{' alert-success': !hayError, 'alert-danger': hayError}" role="alert">
+    <strong>{{this.textoNotificacion}}</strong>
+</div>
